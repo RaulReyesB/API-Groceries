@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="../public/style.css">
+  <title>Tienda Eus</title>
+</head>
+
+<body>
+  <div data-role="page">
+    <div data-role="header" style="overflow: hidden; background-color: black; color: white;">
+      <h1>Abarrotes EUS</h1>
+      <div data-role="navbar">
+        <ul>
+
+          <li><a href="#" id="nav" data-icon="shop">Productos</a></li>
+          <li><a href="#" data-icon="home">Clientes</a></li>
+          <li><a href="#" data-icon="user">Empleados</a></li>
+
+        </ul>
+      </div>
+      <!-- /navbar -->
+    </div data-role="header">
+    <!-- /header -->
+    <div data-role="content">
+      <form action="/api/products" method="POST">
+        <div class="ui-field-contain">
+          <label for="txt_barcode">Codigo de barras:</label>
+          <input type="text" name="barcode" id="txt_barcode" placeholder="Codigo de barras" value="">
+
+          <label for="txt_description">Descripcion:</label>
+          <input type="text" name="description" id="txt_description" placeholder="Descripcion del Productos" value="">
+
+          <label for="txt_brand">Marca:</label>
+          <input type="text" name="brand" id="txt_brand" placeholder="Sabritas" value="">
+
+          <label for="txt_price">Precio: $</label>
+          <input type="text" name="price" id="txt_price" placeholder="Precio de venta" value="">
+
+          <label for="txt_cost">Costo: $</label>
+          <input type="text" name="cost" id="txt_cost" placeholder="Precio de Compra" value="">
+
+          <label for="txt_stock">Existencias: </label>
+          <input type="number" name="stock" id="txt_stock" placeholder="10" value="">
+
+          <label for="txt_stock">Fecha de expiracion: </label>
+          <input type="date" name="expiredDate" id="txt_expired_date" placeholder="00/00/0000" value="">
+
+          <select name="status" id="flip-2" data-role="slider">
+            <option value="0">On</option>
+            <option value="1">Off</option>
+          </select>
+          <button type="submit" id="submit-6" style="margin-top: 40px;"
+            class="ui-shadow ui-btn ui-corner-all ui-mini">Guardar</button>
+        </div>
+      </form>
+      <form>
+        <input data-type="search" id="searchForCollapsibleSet">
+      </form>
+      <div data-role="collapsibleset" data-filter="true" data-inset="true" id="collapsiblesetForFilter"
+        data-input="#searchForCollapsibleSet">
+        <% products.forEach((products)=> { %>
+          <div data-role="collapsible" data-filtertext="<%= products.description %> <%= products.barcode %>">
+            <h3>
+              <%= products.description %>
+            </h3>
+            <ul data-role="listview" data-inset="false">
+              <li>Codigo de barras: <%= products.barcode %>
+              </li>
+              <li>Marca: <%= products.brand %>
+              </li>
+              <li>Precio de venta: <%= products.price %>
+              </li>
+              <li>Costo de compra: <%= products.cost %>
+              </li>
+              <li>Existencias: <%= products.stock %>
+              </li>
+              <li>Fecha de caducidad: <%= products.expiredDate %>
+              </li>
+              <li>Estatus del producto: <%= products.status %>
+              </li>
+              <li><a href="/api/products/<%= products.barcode %>"
+                  style="text-align: center; background-color: rgb(231, 208, 0); border-radius: 10px; margin-bottom: 15px; color: white;"
+                  class="ui-btn ui-corner-all">Editar</a></li>
+              <li>
+              <li><a href="/api/products/deleteOne/<%= products.barcode %>" class="ui-btn"
+                  style="background-color: rgb(253, 17, 17); color: aliceblue;">Eliminar</a></li>
+            </ul>
+          </div>
+          <%}) %>
+      </div>
+    </div>
+    <div data-role="footer">
+      <h5>Developed by RaulRB</h5>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script src="../controllers/productController.js"></script>
