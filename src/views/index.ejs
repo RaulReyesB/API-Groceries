@@ -28,7 +28,7 @@
     </div data-role="header">
     <!-- /header -->
     <div data-role="content">
-      <form action="/api/products" method="POST">
+      <form action="/" method="POST">
         <div class="ui-field-contain">
           <label for="txt_barcode">Codigo de barras:</label>
           <input type="text" name="barcode" id="txt_barcode" placeholder="Codigo de barras" value="">
@@ -84,11 +84,11 @@
               </li>
               <li>Estatus del producto: <%= products.status %>
               </li>
-              <li><a href="/api/products/<%= products.barcode %>"
+              <li><a href="/<%= products.barcode %>"
                   style="text-align: center; background-color: rgb(231, 208, 0); border-radius: 10px; margin-bottom: 15px; color: white;"
                   class="ui-btn ui-corner-all">Editar</a></li>
               <li>
-              <li><a href="/api/products/deleteOne/<%= products.barcode %>" class="ui-btn"
+              <li><a href="/deleteOne/<%= products.barcode %>" class="ui-btn"
                   style="background-color: rgb(253, 17, 17); color: aliceblue;">Eliminar</a></li>
             </ul>
           </div>
