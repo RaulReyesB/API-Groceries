@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start.sh": "chmod +x /opt/render/project/src/node_modules/.bin/nodemon /opt/render/project/src/node_modules/.bin/nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
